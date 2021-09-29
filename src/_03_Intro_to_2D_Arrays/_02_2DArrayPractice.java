@@ -30,6 +30,7 @@ public class _02_2DArrayPractice {
      *          3, 4, 5
      *          6, 7, 8
      */
+	int array2D1[][] = {{0,1,2},{3,4,5},{6,7,8}};
     public Integer[][] test1() {
         
         return null;
