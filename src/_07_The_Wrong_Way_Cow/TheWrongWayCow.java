@@ -1,7 +1,7 @@
 /*
  * https://www.codewars.com/kata/the-wrong-way-cow
  * 
- * Task
+ * Taskx
  * Given a field of cows find which one is the Wrong-Way Cow and return her
  * position.
  * 
@@ -53,7 +53,81 @@ public class TheWrongWayCow {
     public static int[] findWrongWayCow(final char[][] field) {
         // Fill in the code to return the [col, row] coordinate position of the
         // head (letter 'c') of the wrong way cow!
-        
-        return null;
+    	int howManyCows = 0;
+    	String cowArray[] = {null,null,null};  
+        for (int i = 0; i < field.length; i++) {
+			for (int j = 0; j < field.length; j++) {
+				if (howManyCows == 4) {
+					break;
+				}
+				if (field[i][j] == 'c') {
+					if (i<field.length-1&&field[i+1][j] == 'o') {
+						howManyCows++;
+						cowArray[howManyCows-1] = "u"+ i + j;
+					}
+					if ( i>field.length-1&&field[i-1][j] == 'o' ) {
+						howManyCows++;
+						cowArray[howManyCows -1] = "d"+ i + j;
+					}
+					if ( j<field.length-1&&field[i][j+1] == 'o') {
+						howManyCows++;
+						cowArray[howManyCows - 1] = "r"+ i + j;
+					}
+					if (j>field.length-1&&field[i][j-1] == 'o') {
+						howManyCows++;
+						cowArray[howManyCows -1 ] = "l"+ i + j;
+					}
+				}
+			}	
+		}
+        int howManyCharacters = 0;
+        int number = 0;
+        for (int i = 0; i < 3; i++) {
+			if (cowArray[i].charAt(0) == 'u') {
+				howManyCharacters++;
+				number = i;
+			}
+		}
+        if (howManyCharacters == 1) {
+        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
+        	System.out.println(array);
+        	 return array;
+		}
+        for (int i = 0; i < 3; i++) {
+			if (cowArray[i].charAt(0) == 'd') {
+				howManyCharacters++;
+				number = i;
+			}
+		}
+        if (howManyCharacters == 1) {
+        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
+        	System.out.println(array);
+        	 return array;
+		}
+        for (int i = 0; i < 3; i++) {
+			if (cowArray[i].charAt(0) == 'l') {
+				howManyCharacters++;
+				number = i;
+			}
+		}
+        if (howManyCharacters == 1) {
+        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
+        	System.out.println(array);
+        	 return array;
+        	 
+		}
+        for (int i = 0; i < 3; i++) {
+			if (cowArray[i].charAt(0) == 'r') {
+				howManyCharacters++;
+				number = i;
+			}
+		}
+        if (howManyCharacters == 1) {
+        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
+        	System.out.println(array);
+        	 return array;
+		}
+       return null;
+       
     }
 }
