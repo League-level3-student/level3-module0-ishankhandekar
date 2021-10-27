@@ -48,86 +48,66 @@
 
 package _07_The_Wrong_Way_Cow;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class TheWrongWayCow {
 
     public static int[] findWrongWayCow(final char[][] field) {
         // Fill in the code to return the [col, row] coordinate position of the
         // head (letter 'c') of the wrong way cow!
-    	int howManyCows = 0;
-    	String cowArray[] = {null,null,null};  
+    	
+    	ArrayList<String> cowArrayUp = new ArrayList(); 
+    	ArrayList<String> cowArrayDown = new ArrayList(); 
+    	ArrayList<String> cowArrayLeft = new ArrayList(); 
+    	ArrayList<String> cowArrayRight = new ArrayList(); 
         for (int i = 0; i < field.length; i++) {
-			for (int j = 0; j < field.length; j++) {
-				if (howManyCows == 4) {
-					break;
-				}
+			for (int j = 0; j < field[i].length; j++) {
+				
 				if (field[i][j] == 'c') {
 					if (i<field.length-1&&field[i+1][j] == 'o') {
-						howManyCows++;
-						cowArray[howManyCows-1] = "u"+ i + j;
+						
+						cowArrayUp.add(""+ i + " " + j);
 					}
-					if ( i>field.length-1&&field[i-1][j] == 'o' ) {
-						howManyCows++;
-						cowArray[howManyCows -1] = "d"+ i + j;
+					if ( i>0&&field[i-1][j] == 'o' ) {
+						
+						cowArrayDown.add(""+ i +" "+ j) ;
 					}
-					if ( j<field.length-1&&field[i][j+1] == 'o') {
-						howManyCows++;
-						cowArray[howManyCows - 1] = "r"+ i + j;
+					if ( j<field[i].length-1&&field[i][j+1] == 'o') {
+						
+						cowArrayLeft.add(""+ i +" "+ j) ;
 					}
-					if (j>field.length-1&&field[i][j-1] == 'o') {
-						howManyCows++;
-						cowArray[howManyCows -1 ] = "l"+ i + j;
+					if (j>0&&field[i][j-1] == 'o') {
+						
+						cowArrayRight.add(""  +i +" "+ j);
 					}
 				}
 			}	
 		}
-        int howManyCharacters = 0;
-        int number = 0;
-        for (int i = 0; i < 3; i++) {
-			if (cowArray[i].charAt(0) == 'u') {
-				howManyCharacters++;
-				number = i;
-			}
+        
+        int array[] = new int[2];
+        if (cowArrayUp.size() == 1) {
+			array[1] = Integer.parseInt(cowArrayUp.get(0).split(" ")[0]);
+			array[0] = Integer.parseInt(cowArrayUp.get(0).split(" ")[1]);
+ 		}
+        if (cowArrayDown.size() == 1) {
+        	array[1] = Integer.parseInt(cowArrayDown.get(0).split(" ")[0]);
+			array[0] = Integer.parseInt(cowArrayDown.get(0).split(" ")[1]);
 		}
-        if (howManyCharacters == 1) {
-        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
-        	System.out.println(array);
-        	 return array;
+        if (cowArrayLeft.size() == 1) {
+        	array[1] = Integer.parseInt(cowArrayLeft.get(0).split(" ")[0]);
+			array[0] = Integer.parseInt(cowArrayLeft.get(0).split(" ")[1]);
 		}
-        for (int i = 0; i < 3; i++) {
-			if (cowArray[i].charAt(0) == 'd') {
-				howManyCharacters++;
-				number = i;
-			}
+        if (cowArrayRight.size() == 1) {
+        	array[1] = Integer.parseInt(cowArrayRight.get(0).split(" ")[0]);
+			array[0] = Integer.parseInt(cowArrayRight.get(0).split(" ")[1]);
 		}
-        if (howManyCharacters == 1) {
-        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
-        	System.out.println(array);
-        	 return array;
-		}
-        for (int i = 0; i < 3; i++) {
-			if (cowArray[i].charAt(0) == 'l') {
-				howManyCharacters++;
-				number = i;
-			}
-		}
-        if (howManyCharacters == 1) {
-        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
-        	System.out.println(array);
-        	 return array;
-        	 
-		}
-        for (int i = 0; i < 3; i++) {
-			if (cowArray[i].charAt(0) == 'r') {
-				howManyCharacters++;
-				number = i;
-			}
-		}
-        if (howManyCharacters == 1) {
-        	int array[] = {(int)cowArray[number].charAt(1),(int)cowArray[number].charAt(2)};
-        	System.out.println(array);
-        	 return array;
-		}
-       return null;
+        System.out.println(cowArrayUp);
+        System.out.println(cowArrayDown);
+        System.out.println(cowArrayLeft);
+        System.out.println(cowArrayRight);
+        return array;
+        
        
     }
 }
